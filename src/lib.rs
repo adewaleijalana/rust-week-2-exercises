@@ -78,7 +78,7 @@ pub fn apply_fee(balance: &mut u64, fee: u64) {
 
 pub fn move_txid(txid: String) -> String {
     // TODO: Return formatted string including the txid for display or logging
-    format!("Transaction id: {}", txid)
+    format!("txid: {}", txid)
 }
 
 // TODO: Add necessary derive traits
@@ -93,9 +93,9 @@ impl Opcode {
     pub fn from_byte(byte: u8) -> Result<Self, String> {
         // TODO: Implement mapping from byte to Opcode variant
         match byte {
-            118 => Ok(Opcode::OpDup),
-           172 => Ok(Opcode::OpChecksig),
-           _ => Err("Error converting Opcode".to_string())
+            0x76 => Ok(Opcode::OpDup),
+            0xac => Ok(Opcode::OpChecksig),
+           _ => Err(format!("Invalid opcode: {}", byte))
 
         }
     }
