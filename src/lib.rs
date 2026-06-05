@@ -40,11 +40,10 @@ pub enum ScriptType {
 
 pub fn classify_script(script: &[u8]) -> ScriptType {
     // TODO: Match script pattern and return corresponding ScriptType
-    let script_lent = script.len();
-    match script_lent {
-        22 => ScriptType::P2WPKH,
-        25 => ScriptType::P2PKH,
-        _ => ScriptType::Unknown
+    match script {
+        [0x76, 0xa9, ..] => ScriptType::P2PKH,
+        [0x00, 0x14, ..] => ScriptType::P2WPKH,
+        _ => ScriptType::Unknown,
     }
 }
 
