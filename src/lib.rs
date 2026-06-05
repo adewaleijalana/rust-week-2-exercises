@@ -95,7 +95,7 @@ impl Opcode {
         match byte {
             0x76 => Ok(Opcode::OpDup),
             0xac => Ok(Opcode::OpChecksig),
-           _ => Err(format!("Invalid opcode: {}", byte))
+            _ => Err(format!("Invalid opcode: {:#04x}", byte))
 
         }
     }
