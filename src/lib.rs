@@ -2,8 +2,7 @@ use hex::{decode, encode};
 
 pub fn decode_hex(hex_str: &str) -> Result<Vec<u8>, String> {
     // TODO: Decode hex string into Vec<u8>, return error string on failure
-    decode(hex_str)
-    .map_err(|_| "Hex decode error".to_string())
+    decode(hex_str).map_err(|_| "Hex decode error".to_string())
 }
 
 pub fn to_big_endian(bytes: &[u8]) -> Vec<u8> {
@@ -28,8 +27,9 @@ pub fn swap_endian_u32(num: u32) -> [u8; 4] {
 
 pub fn parse_satoshis(input: &str) -> Result<u64, String> {
     // TODO: Parse input string to u64, return error string if invalid
-    input.parse::<u64>()
-    .map_err(|_| "Invalid satoshi amount".to_string())
+    input
+        .parse::<u64>()
+        .map_err(|_| "Invalid satoshi amount".to_string())
 }
 
 pub enum ScriptType {
@@ -94,8 +94,7 @@ impl Opcode {
         match byte {
             0x76 => Ok(Opcode::OpDup),
             0xac => Ok(Opcode::OpChecksig),
-            _ => Err(format!("Invalid opcode: {:#04x}", byte))
-
+            _ => Err(format!("Invalid opcode: {:#04x}", byte)),
         }
     }
 }
